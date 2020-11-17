@@ -1,6 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Entypo from 'react-native-vector-icons/Entypo';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
@@ -28,32 +29,24 @@ export default function App() {
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-              let iconeName
-              
+            tabBarIcon: ({ focused, color, size }) => {              
               switch (route.name) {
                 case "Home":
-                  iconeName = focused
-                    ? 'ios-information-circle'
-                    : 'ios-information-circle-outline';
-                    break
+                  return <Entypo name={focused ?  'camera' : 'camera'} size={size} color={color} />
                 case "Home2":
-                  iconeName = focused ?  'ios-list-box' : 'ios-list'
-                  break
+                  return <AntDesign name={focused ?  'picture' : 'picture'} size={size} color={color} />
                 default:
-                  iconeName = ""
-                  break
+                  return <AntDesign name={focused ?  'picture' : 'picture'} size={size} color={color} />
               }
-              return <Ionicons name={iconeName} size={size} color={color} />
             }
           })}
           tabBarOptions={{
-            activeTintColor: 'tomato',
+            activeTintColor: '#D50000',
             inactiveTintColor: 'gray'
           }}
         >
-          <Tab.Screen name="Home" component={Home} options={{ tabBarBadge: 3 }} />
-          <Tab.Screen name="Home2" component={Home2} />
+          <Tab.Screen name="Camera" component={Home} />
+          <Tab.Screen name="Gallery" component={Home2} />
         </Tab.Navigator>
         <StatusBar style="auto" />
       </NavigationContainer>
