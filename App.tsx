@@ -5,14 +5,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-
-const Home = () => {
-  return (
-    <View style={styles.container}>
-      <Text>Hello in Home</Text>
-    </View>
-  )
-}
+import { CameraContainer } from './src/container/Camera';
 
 const Home2 = () => {
   return (
@@ -45,7 +38,7 @@ export default function App() {
             inactiveTintColor: 'gray'
           }}
         >
-          <Tab.Screen name="Camera" component={Home} />
+          <Tab.Screen name="Camera" component={CameraContainer} />
           <Tab.Screen name="Gallery" component={Home2} />
         </Tab.Navigator>
         <StatusBar style="auto" />
