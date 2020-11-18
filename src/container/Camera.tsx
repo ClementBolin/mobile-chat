@@ -1,17 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
+import { Entypo } from '@expo/vector-icons';
 import * as Permission from 'expo-permissions';
 
 export const CameraContainer = () => {
     const [hashPermission, setHashPermission] = useState<string>("")
     const [type, setType] = useState(Camera.Constants.Type.back)
+    const inputCamera = useRef<Camera>(null)
+
+    const takePicture = async () => {
+        if (inputCamera) {
+            let picture = await inputCamera.current?.takePictureAsync();
+        }
+    }
 
     useEffect(() => {
         Permission.askAsync(Permission.CAMERA)
             .then((data) => {
                 const { status } = data
-                console.log(status)
                 setHashPermission(status ? 'granted' : 'error Access')
             })
 
@@ -26,9 +33,13 @@ export const CameraContainer = () => {
             )
         case "granted":
             return (
-                <View style={{ flex: 1 }}>
-                    <Camera style={{ flex: 1 }} type={type}>
-
+                <View style={styles.container}>
+                    <Camera style={styles.camera} type={type} ref={inputCamera}>
+                        <View style={styles.CameraButton}>
+                            <TouchableOpacity style={styles.opacity} onPress={takePicture}>
+                                <Entypo name="circle" style={styles.icons} />
+                            </TouchableOpacity>
+                        </View>
                     </Camera>
                 </View>
             )
@@ -40,3 +51,28 @@ export const CameraContainer = () => {
             )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
+    CameraButton: {
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: "space-around",
+        margin: 20
+    },
+    icons: {
+        color: "white",
+        fontSize: 50,
+    },
+    opacity: {
+        alignSelf: "flex-end",
+        alignItems: "center",
+        backgroundColor: "transparent",
+    },
+    camera: {
+        display: "flex",
+        flex: 1,
+    }
+})

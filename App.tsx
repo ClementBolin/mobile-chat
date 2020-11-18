@@ -24,9 +24,9 @@ export default function App() {
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {              
               switch (route.name) {
-                case "Home":
+                case "Camera":
                   return <Entypo name={focused ?  'camera' : 'camera'} size={size} color={color} />
-                case "Home2":
+                case "Gallery":
                   return <AntDesign name={focused ?  'picture' : 'picture'} size={size} color={color} />
                 default:
                   return <AntDesign name={focused ?  'picture' : 'picture'} size={size} color={color} />
