@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Camera } from 'expo-camera';
+import { Camera, CameraPictureOptions } from 'expo-camera';
 import { Entypo } from '@expo/vector-icons';
 import * as Permission from 'expo-permissions';
 
@@ -11,7 +11,10 @@ export const CameraContainer = () => {
 
     const takePicture = async () => {
         if (inputCamera) {
-            let picture = await inputCamera.current?.takePictureAsync();
+            const pictureOption: CameraPictureOptions = {
+                base64: true,
+            }
+            let picture = await inputCamera.current?.takePictureAsync(pictureOption);
         }
     }
 
