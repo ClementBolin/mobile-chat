@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Camera, CameraPictureOptions } from 'expo-camera';
 import { Entypo } from '@expo/vector-icons';
 import * as Permission from 'expo-permissions';
+import { OCRDetection } from '../services/ocr';
 
 export const CameraContainer = () => {
     const [hashPermission, setHashPermission] = useState<string>("")
@@ -15,6 +16,7 @@ export const CameraContainer = () => {
                 base64: true,
             }
             let picture = await inputCamera.current?.takePictureAsync(pictureOption);
+            OCRDetection(picture?.base64)
         }
     }
 
