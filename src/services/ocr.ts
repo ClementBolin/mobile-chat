@@ -1,24 +1,36 @@
 import config from '../../config.json';
 
-const GOOGLE_URL = "https://vision.googleapis.com/v1/images:annotate?key="
+const GOOGLE_URL = `https://vision.googleapis.com/v1/images:annotate?key=${config.API_KEY}`
 
 export async function OCRDetection(img: string | undefined) {
     if (img == undefined) {
         return
     }
+    const body = {
+        requests: [
+          {
+            image: {
+              content: img,
+            },
+            features: [
+              {
+                type: 'LABEL_DETECTION',
+                maxResults: 1,
+              },
+            ],
+          },
+        ],
+      };
     const requestOption: RequestInit = {
-        method: "POST",
-        body: JSON.stringify({
-            "requests": [{
-                "image": { "content": img },
-                "features": [
-                    { "type": "TEXT_DETECTION" }
-                ]}]
-        })
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
     }
-    const FULL_URL = GOOGLE_URL + config.API_KEY
-    console.log("API KEY = " + FULL_URL)
-    const res = await fetch(FULL_URL, requestOption)
-    console.log("check res")
-    console.log(res)
+    console.log("API KEY = " + GOOGLE_URL)
+    const res = await fetch(GOOGLE_URL, requestOption)
+    const resJ = await res.json()
+    console.log("response JSON =f " + resJ)
 }
