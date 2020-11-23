@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { StyleSheet, View, Image, Text, TextInput } from 'react-native'
+import { StyleSheet, View, Image, Text, TextInput, TouchableOpacity } from 'react-native';
+import { AntDesign } from '@expo/vector-icons'
 
 export const LoginScreen = ({ navigation }) => {
     const [name, setName] = useState("");
@@ -11,18 +12,25 @@ export const LoginScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.circle} />
-            <View style={{marginTop: 80}}>
+            <View style={{marginTop: 90}}>
                 <Image
                     source={require('../../assets/chat.png')}
                     style={{width: 150, height: 150, alignSelf: "center"}}
                 />
             </View>
-            <View style={{marginHorizontal: 22, marginTop: 15}}>
+            <View style={{marginHorizontal: 22, marginTop: 70}}>
                 <Text style={styles.header}>Username</Text>
                 <TextInput
                     style={styles.input}
                     placeholder="username"
+                    onChangeText={input => setName(input)}
+                    value={name} 
                 />
+                <View style={{marginTop: 50, alignItems: "flex-end"}}>
+                    <TouchableOpacity onPress={continueChat} style={styles.contiueButton}>
+                        <AntDesign name="arrowright" size={24} color="white" />
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>
     )
@@ -53,5 +61,13 @@ const styles = StyleSheet.create({
         borderColor: "#B4B7C3",
         borderWidth: StyleSheet.hairlineWidth,
         borderRadius: 30
+    },
+    contiueButton: {
+        width: 70,
+        height: 70,
+        borderRadius: 70 / 2,
+        backgroundColor: "#9032E4",
+        alignItems: "center",
+        justifyContent: "center"
     }
 })
