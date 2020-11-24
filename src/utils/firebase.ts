@@ -8,28 +8,31 @@ class Firebase {
     }
 
     init = () => {
-        if (!firebase.apps.length) {
-            firebase.initializeApp({
-                apiKey: "AIzaSyABUgBtx0etFBBuf10_70b765B644Rwg7o",
-                authDomain: "chatapp-1add8.firebaseapp.com",
-                databaseURL: "https://chatapp-1add8.firebaseio.com",
-                projectId: "chatapp-1add8",
-                storageBucket: "chatapp-1add8.appspot.com",
-                messagingSenderId: "590133004109",
-                appId: "1:590133004109:web:3af245e291303ce09c5904",
-                measurementId: "G-ECDQJB85M6"
-            })
+        if (firebase.apps.length === 0) {
+            var firebaseConfig = {
+                apiKey: "API_KEY",
+                authDomain: "PROJECT_ID.firebaseapp.com",
+                databaseURL: "https://PROJECT_ID.firebaseio.com",
+                projectId: "PROJECT_ID",
+                storageBucket: "PROJECT_ID.appspot.com",
+                messagingSenderId: "SENDER_ID",
+                appId: "APP_ID",
+                measurementId: "G-MEASUREMENT_ID",
+            };
+              // Initialize Firebase
+              firebase.initializeApp(firebaseConfig);
         }
     }
 
     checkAuth = () => {
         firebase.auth().onAuthStateChanged(user => {
-            if (!user)
+            if (!user) {
                 firebase.auth().signInAnonymously();
+            }
         })
     }
 
-    send = (messages: IMessage[]) => {
+    send = (messages: any[]) => {
         messages.forEach(item => {
             const message: IMessage = {
                 text: item.text,
