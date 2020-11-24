@@ -10,15 +10,15 @@ class Firebase {
     init = () => {
         if (firebase.apps.length === 0) {
             var firebaseConfig = {
-                apiKey: "API_KEY",
-                authDomain: "PROJECT_ID.firebaseapp.com",
-                databaseURL: "https://PROJECT_ID.firebaseio.com",
-                projectId: "PROJECT_ID",
-                storageBucket: "PROJECT_ID.appspot.com",
-                messagingSenderId: "SENDER_ID",
-                appId: "APP_ID",
-                measurementId: "G-MEASUREMENT_ID",
-            };
+                apiKey: "AIzaSyABUgBtx0etFBBuf10_70b765B644Rwg7o",
+                authDomain: "chatapp-1add8.firebaseapp.com",
+                databaseURL: "https://chatapp-1add8.firebaseio.com",
+                projectId: "chatapp-1add8",
+                storageBucket: "chatapp-1add8.appspot.com",
+                messagingSenderId: "590133004109",
+                appId: "1:590133004109:web:ed89033969481a2b9c5904",
+                measurementId: "G-5WZGJ2XM6Q"
+              };
               // Initialize Firebase
               firebase.initializeApp(firebaseConfig);
         }
