@@ -12,10 +12,11 @@ export const ChatScreen = ({ navigation }: IScreenNavigation) => {
     const [messages, setMessages] = useState([]);
     const [actualUser, setActualUser] = useState({
         _id: "Hello",
-        name: "Hello23"
+        name: navigation.state.params.name
     })
 
     useEffect(() => {
+        console.log(`name account use = ${navigation.state.params.name}`)
         const unsubscribe = chatRef.onSnapshot(querySnapshot => {
             const messageFirestore = querySnapshot
                 .docChanges().filter(({type}) => type === 'added')

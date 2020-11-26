@@ -24,6 +24,7 @@ export const LoginScreen = ({ navigation }: IScreenNavigation) => {
                 <TextInput
                     style={styles.input}
                     placeholder="username"
+                    placeholderTextColor="#616266"
                     onChangeText={input => setName(input)}
                     value={name} 
                 />
@@ -60,6 +61,8 @@ const styles = StyleSheet.create({
         paddingLeft: 8,
         height: 50,
         borderColor: "#B4B7C3",
+        backgroundColor: "#F5F6F9",
+        color: "black",
         borderWidth: StyleSheet.hairlineWidth,
         borderRadius: 30
     },
