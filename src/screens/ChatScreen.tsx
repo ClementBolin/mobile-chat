@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { View, Text, StyleSheet, Platform, KeyboardAvoidingViewBase } from 'react-native'
 import { GiftedChat, IMessage } from 'react-native-gifted-chat';
 // import Firebase from '../utils/firebase';
@@ -28,13 +28,16 @@ export const ChatScreen = ({ navigation }) => {
                     return {...message, createdAt: message.createdAt.toDate()}
                 })
                 .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
-            setMessages(messageFirestore)
+            appendMessages(messageFirestore)
         })
     }, [])
 
-    const handleSend = async (message: IMessage[]) => {
-        message.forEach(item => console.log("item value : " + item.text))
-        const writes = message.map((m) => chatRef.add(m));
+    const appendMessages = useCallback((messages) => {
+        setMessages((previousMessages) => GiftedChat.append(previousMessages, messages))
+    }, [messages])
+
+    const handleSend = async (myMessage: IMessage[]) => {
+        const writes = myMessage.map(m => chatRef.add(m))
         await Promise.all(writes)
     }
 
