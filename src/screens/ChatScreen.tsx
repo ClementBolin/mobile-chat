@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { View, Text, StyleSheet, Platform, KeyboardAvoidingViewBase } from 'react-native'
 import { GiftedChat, IMessage } from 'react-native-gifted-chat';
-// import Firebase from '../utils/firebase';
 import firebase from 'firebase';
 import 'firebase/firestore';
 import { SafeAreaView } from 'react-navigation';
+import { IScreenNavigation } from './models/navigation.model';
 
-export const ChatScreen = ({ navigation }) => {
+export const ChatScreen = ({ navigation }: IScreenNavigation) => {
     const db = firebase.firestore()
     const chatRef = db.collection('chats')
     const [messages, setMessages] = useState([]);
@@ -14,10 +14,6 @@ export const ChatScreen = ({ navigation }) => {
         _id: "Hello",
         name: "Hello23"
     })
-
-    // useEffect(() => {
-    //     Firebase.get((message: any) => setMessages(GiftedChat.append(messages, message)))
-    // }, [])
 
     useEffect(() => {
         const unsubscribe = chatRef.onSnapshot(querySnapshot => {
@@ -42,13 +38,7 @@ export const ChatScreen = ({ navigation }) => {
     }
 
     const chat = <GiftedChat messages={messages} user={actualUser} onSend={handleSend} />
-    if (Platform.OS === "android") {
-        return (
-            <KeyboardAvoidingViewBase style={{flex: 1}} behavior="padding" keyboardVerticalOffset={30} enabled >
-                {chat}
-            </KeyboardAvoidingViewBase>
-        )
-    }
+
     return (
         <SafeAreaView style={{flex: 1}}>
             {chat}

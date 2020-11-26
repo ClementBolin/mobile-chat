@@ -3,7 +3,6 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { ChatScreen } from './src/screens/ChatScreen';
 import { LoginScreen } from './src/screens/LoginScreen';
-import { SafeAreaView } from 'react-navigation';
 import { InitFirebase } from './src/utils/firebase2';
 
 InitFirebase()

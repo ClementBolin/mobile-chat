@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { StyleSheet, View, Image, Text, TextInput, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'
+import { IScreenNavigation } from './models/navigation.model';
 
-export const LoginScreen = ({ navigation }) => {
+export const LoginScreen = ({ navigation }: IScreenNavigation) => {
     const [name, setName] = useState("");
 
     const continueChat = () => {
