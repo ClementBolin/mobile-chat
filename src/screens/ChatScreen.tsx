@@ -11,7 +11,7 @@ export const ChatScreen = ({ navigation }: IScreenNavigation) => {
     const chatRef = db.collection('chats')
     const [messages, setMessages] = useState([]);
     const [actualUser, setActualUser] = useState({
-        _id: "Hello",
+        _id: firebase.auth().currentUser,
         name: navigation.state.params.name
     })
 
