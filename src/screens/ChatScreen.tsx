@@ -17,6 +17,7 @@ export const ChatScreen = ({ navigation }: IScreenNavigation) => {
 
     useEffect(() => {
         console.log(`name account use = ${navigation.state.params.name}`)
+        console.log(`collection use = ${navigation.state.params.room}`)
         const unsubscribe = chatRef.onSnapshot(querySnapshot => {
             const messageFirestore = querySnapshot
                 .docChanges().filter(({type}) => type === 'added')

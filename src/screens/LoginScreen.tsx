@@ -4,10 +4,20 @@ import { AntDesign } from '@expo/vector-icons'
 import { IScreenNavigation } from './models/navigation.model';
 
 export const LoginScreen = ({ navigation }: IScreenNavigation) => {
-    const [name, setName] = useState("");
+    const [name, setName] = useState<string>("");
+    const [room, setRoom] = useState<string>("");
+    const roomArray: Array<string> = [ "room1", "room2", "room3" ];
 
     const continueChat = () => {
-        navigation.navigate("Chat", {name: name})
+        if (room == "" || name == "")
+            return
+        navigation.navigate("Chat", {name: name, room: room})
+    }
+
+    const checkRoomClick = (itemRoom: string): boolean => {
+        if (itemRoom === room)
+            return true
+        return false
     }
 
     return (
@@ -28,6 +38,17 @@ export const LoginScreen = ({ navigation }: IScreenNavigation) => {
                     onChangeText={input => setName(input)}
                     value={name} 
                 />
+                <View style={{flexDirection: "row", alignItems: "center", justifyContent: "center", marginTop: 25}}>
+                    {roomArray.map((item: string, i: number) => {
+                        return (
+                            <View style={{marginHorizontal: 10}}>                            
+                                <TouchableOpacity style={checkRoomClick(item) ? styles.roomInputPress : styles.roomInput} onPress={() => setRoom(item)}>
+                                    <Text style={{color: "black", fontWeight: "600"}}>{item}</Text>
+                                </TouchableOpacity>
+                            </View>
+                        )
+                    })}
+                </View>
                 <View style={{marginTop: 50, alignItems: "flex-end"}}>
                     <TouchableOpacity onPress={continueChat} style={styles.contiueButton}>
                         <AntDesign name="arrowright" size={24} color="white" />
@@ -73,5 +94,22 @@ const styles = StyleSheet.create({
         backgroundColor: "#9032E4",
         alignItems: "center",
         justifyContent: "center"
+    },
+    roomInput: {
+        width: 90,
+        height: 40,
+        borderRadius: 25 / 2,
+        borderColor: "#B4B7C3",
+        borderWidth: StyleSheet.hairlineWidth,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    roomInputPress: {
+        width: 90,
+        height: 40,
+        borderRadius: 25 / 2,
+        backgroundColor: "#9032E4",
+        alignItems: "center",
+        justifyContent: "center",
     }
 })
