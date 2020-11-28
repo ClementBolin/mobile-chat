@@ -8,10 +8,10 @@ import { IScreenNavigation } from './models/navigation.model';
 
 export const ChatScreen = ({ navigation }: IScreenNavigation) => {
     const db = firebase.firestore()
-    const chatRef = db.collection('chats')
+    const chatRef = db.collection(navigation.state.params.room)
     const [messages, setMessages] = useState([]);
     const [actualUser, setActualUser] = useState({
-        _id: firebase.auth().currentUser,
+        _id: navigation.state.params.name,
         name: navigation.state.params.name
     })
 
