@@ -41,7 +41,7 @@ export const LoginScreen = ({ navigation }: IScreenNavigation) => {
                 <View style={{flexDirection: "row", alignItems: "center", justifyContent: "center", marginTop: 25}}>
                     {roomArray.map((item: string, i: number) => {
                         return (
-                            <View style={{marginHorizontal: 10}}>                            
+                            <View style={{marginHorizontal: 10}} key={item}>                            
                                 <TouchableOpacity style={checkRoomClick(item) ? styles.roomInputPress : styles.roomInput} onPress={() => setRoom(item)}>
                                     <Text style={{color: "black", fontWeight: "600"}}>{item}</Text>
                                 </TouchableOpacity>
