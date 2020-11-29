@@ -1,15 +1,7 @@
 # Mobile Chat
 
-<style>
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-</style>
 
-<img alt="Golang" width="290px" src="./assets/example_mobil.gif" />
-<!-- ![example](./assets/example_mobil.gif) -->
+<img style="display:block;margin-left:auto;margin-right:auto;" alt="Golang" width="290px" src="./assets/example_mobil.gif" />
 
 ### Why
 
