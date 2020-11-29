@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { View, Text, StyleSheet, Platform, KeyboardAvoidingViewBase } from 'react-native'
+import { Text, StyleSheet, Platform, KeyboardAvoidingViewBase } from 'react-native'
 import { GiftedChat, IMessage } from 'react-native-gifted-chat';
 import firebase from 'firebase';
 import 'firebase/firestore';
@@ -16,8 +16,6 @@ export const ChatScreen = ({ navigation }: IScreenNavigation) => {
     })
 
     useEffect(() => {
-        console.log(`name account use = ${navigation.state.params.name}`)
-        console.log(`collection use = ${navigation.state.params.room}`)
         firebase.auth.Auth.Persistence.SESSION
         const unsubscribe = chatRef.onSnapshot(querySnapshot => {
             const messageFirestore = querySnapshot
