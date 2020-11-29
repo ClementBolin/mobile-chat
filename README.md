@@ -1,6 +1,7 @@
 # Mobile Chat
 
-![example](./assets/example_mobil.gif)
+<img alt="Golang" width="190px" src="./assets/example_mobil.gif" />
+<!-- ![example](./assets/example_mobil.gif) -->
 
 ### Why
 
